@@ -1,0 +1,363 @@
+@import 'tailwindcss';
+
+:root {
+  font-family: Inter, 'Segoe UI', sans-serif;
+  line-height: 1.5;
+  font-weight: 400;
+  color: #1f1a18;
+  background-color: #f4efe8;
+  --bg-main: #f4efe8;
+  --bg-soft: #faf7f3;
+  --card: rgba(255, 255, 255, 0.76);
+  --card-strong: rgba(255, 255, 255, 0.9);
+  --line: rgba(148, 120, 99, 0.18);
+  --shadow-soft: 0 20px 60px rgba(71, 53, 43, 0.08);
+  --shadow-card: 0 18px 38px rgba(71, 53, 43, 0.08);
+  --primary: #1f1a18;
+  --primary-strong: #2d2623;
+  --accent: #d77b5b;
+  --accent-2: #f0b18e;
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+html.dark {
+  background: #18120f;
+}
+
+html,
+body,
+#root {
+  margin: 0;
+  min-height: 100%;
+  min-height: 100vh;
+}
+
+body {
+  position: relative;
+  margin: 0;
+  min-height: 100vh;
+  overflow-x: hidden;
+  background:
+    radial-gradient(circle at top left, rgba(240, 177, 142, 0.24), transparent 28%),
+    radial-gradient(circle at 80% 15%, rgba(136, 119, 255, 0.18), transparent 22%),
+    radial-gradient(circle at 50% 80%, rgba(105, 193, 255, 0.12), transparent 25%),
+    linear-gradient(145deg, #f7f0ea 0%, #f1e8e0 32%, #efe5db 100%);
+  color: #1f1a18;
+  transition: background 0.2s ease, color 0.2s ease;
+}
+
+body::before,
+body::after {
+  content: '';
+  position: fixed;
+  width: 44vw;
+  height: 44vw;
+  min-width: 320px;
+  min-height: 320px;
+  max-width: 680px;
+  max-height: 680px;
+  border-radius: 50%;
+  filter: blur(110px);
+  opacity: 0.68;
+  pointer-events: none;
+  z-index: 0;
+  mix-blend-mode: screen;
+}
+
+body::before {
+  top: -10%;
+  left: -8%;
+  background: radial-gradient(circle, rgba(138, 92, 246, 0.42), rgba(138, 92, 246, 0.2) 32%, transparent 72%);
+}
+
+body::after {
+  right: -8%;
+  bottom: -12%;
+  background: radial-gradient(circle, rgba(95, 201, 255, 0.36), rgba(95, 201, 255, 0.18) 32%, transparent 72%);
+}
+
+.dark body {
+  background:
+    radial-gradient(circle at top left, rgba(96, 165, 250, 0.14), transparent 25%),
+    radial-gradient(circle at bottom right, rgba(192, 132, 252, 0.10), transparent 27%),
+    linear-gradient(145deg, #090b12 0%, #111827 38%, #0f172a 100%);
+  color: #e2e8f0;
+}
+
+body,
+button,
+input,
+textarea,
+select {
+  font: inherit;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+img {
+  max-width: 100%;
+  display: block;
+}
+
+::selection {
+  background: rgba(124, 140, 255, 0.22);
+}
+
+.auth-shell {
+  position: relative;
+  min-height: 100vh;
+  overflow: hidden;
+}
+
+.auth-shell::before,
+.auth-shell::after {
+  content: '';
+  position: absolute;
+  border-radius: 9999px;
+  filter: blur(80px);
+  opacity: 0.7;
+  pointer-events: none;
+}
+
+.auth-shell::before {
+  top: 6%;
+  left: 8%;
+  width: 260px;
+  height: 260px;
+  background: rgba(124, 140, 255, 0.18);
+}
+
+.auth-shell::after {
+  right: 8%;
+  bottom: 8%;
+  width: 320px;
+  height: 320px;
+  background: rgba(181, 138, 247, 0.14);
+}
+
+.dark .auth-shell::before {
+  background: rgba(96, 165, 250, 0.18);
+}
+
+.dark .auth-shell::after {
+  background: rgba(168, 85, 247, 0.18);
+}
+
+.auth-nav,
+.feature-card,
+.auth-panel,
+.metric-card,
+.soft-button,
+.primary-button,
+.secondary-button,
+.bookmark-card,
+.dashboard-shell,
+.dashboard-main,
+.dashboard-header {
+  transition: transform 0.22s ease, box-shadow 0.22s ease, border-color 0.22s ease, background 0.22s ease, color 0.22s ease;
+}
+
+.auth-nav {
+  position: relative;
+  z-index: 1;
+  background: rgba(255, 255, 255, 0.68);
+  border: 1px solid var(--line);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.8), 0 16px 28px rgba(15, 23, 42, 0.06);
+  backdrop-filter: blur(10px);
+}
+
+.auth-panel {
+  position: relative;
+  z-index: 1;
+  background: rgba(255, 255, 255, 0.74);
+  border: 1px solid rgba(148, 163, 184, 0.22);
+  box-shadow: var(--shadow-soft);
+  backdrop-filter: blur(12px);
+}
+
+.auth-panel:hover,
+.feature-card:hover,
+.metric-card:hover,
+.bookmark-card:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 30px 60px rgba(15, 23, 42, 0.09);
+}
+
+.feature-card,
+.metric-card,
+.bookmark-card {
+  background: rgba(255, 255, 255, 0.72);
+  border: 1px solid rgba(148, 163, 184, 0.2);
+  box-shadow: var(--shadow-card);
+  backdrop-filter: blur(10px);
+}
+
+.soft-button,
+.secondary-button {
+  border: 1px solid rgba(148, 163, 184, 0.32);
+  background: rgba(255, 255, 255, 0.8);
+  color: #334155;
+  box-shadow: 0 10px 20px rgba(15, 23, 42, 0.04);
+}
+
+.soft-button:hover,
+.secondary-button:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 16px 28px rgba(15, 23, 42, 0.06);
+  background: rgba(255, 255, 255, 0.96);
+}
+
+.primary-button {
+  background: linear-gradient(135deg, #7c8cff 0%, #8ea9ff 30%, #b58af7 100%);
+  border: 1px solid rgba(124, 140, 255, 0.35);
+  box-shadow: 0 18px 38px rgba(124, 140, 255, 0.28);
+}
+
+.primary-button:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 22px 44px rgba(124, 140, 255, 0.32);
+}
+
+input[type='text'],
+input[type='email'],
+input[type='password'] {
+  transition: border-color 0.2s ease, box-shadow 0.2s ease, background 0.2s ease;
+}
+
+input[type='text']:focus,
+input[type='email']:focus,
+input[type='password']:focus {
+  border-color: rgba(124, 140, 255, 0.6) !important;
+  box-shadow: 0 0 0 4px rgba(124, 140, 255, 0.12);
+}
+
+.dark .auth-nav,
+.dark .auth-panel,
+.dark .feature-card,
+.dark .bookmark-card,
+.dark .dashboard-header,
+.dark .dashboard-main {
+  background: rgba(15, 23, 42, 0.72);
+  border-color: rgba(148, 163, 184, 0.2);
+  box-shadow: 0 20px 40px rgba(2, 6, 23, 0.45);
+}
+
+.dark .soft-button,
+.dark .secondary-button {
+  background: rgba(15, 23, 42, 0.9);
+  border-color: rgba(148, 163, 184, 0.26);
+  color: #e2e8f0;
+}
+
+.dark .soft-button:hover,
+.dark .secondary-button:hover {
+  background: rgba(30, 41, 59, 0.92);
+}
+
+.dark .feature-card,
+.dark .bookmark-card {
+  background: rgba(15, 23, 42, 0.7);
+}
+
+.dark .dashboard-shell {
+  background: rgba(15, 23, 42, 0.12);
+}
+
+.dark .auth-nav a,
+.dark .auth-nav .text-slate-600,
+.dark .auth-nav .text-slate-500,
+.dark .auth-panel .text-slate-600,
+.dark .auth-panel .text-slate-500,
+.dark .feature-card .text-slate-600,
+.dark .bookmark-card .text-slate-600,
+.dark .bookmark-card .text-slate-500 {
+  color: #cbd5e1;
+}
+
+.dark input[type='text'],
+.dark input[type='email'],
+.dark input[type='password'] {
+  background: rgba(15, 23, 42, 0.9);
+  border-color: rgba(148, 163, 184, 0.25);
+  color: #e2e8f0;
+}
+
+
+.glass-panel {
+  background: linear-gradient(135deg, rgba(18, 24, 39, 0.82), rgba(11, 16, 28, 0.48));
+  border: 1px solid rgba(148, 163, 184, 0.18);
+  box-shadow: inset 0 1px 0 rgba(255,255,255,0.12), 0 22px 60px rgba(2,6,23,0.44);
+  backdrop-filter: blur(18px);
+  -webkit-backdrop-filter: blur(18px);
+}
+
+.dark .glass-panel {
+  background: linear-gradient(135deg, rgba(15,23,42,0.76), rgba(30,41,59,0.4));
+  border-color: rgba(148,163,184,0.18);
+  box-shadow: inset 0 1px 0 rgba(255,255,255,0.06), 0 20px 50px rgba(2,6,23,0.45);
+}
+
+.theme-reference-shell {
+  position: relative;
+  background: linear-gradient(180deg, rgba(8,12,19,0.88), rgba(7,11,18,0.96));
+}
+
+.theme-reference-shell::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background:
+    linear-gradient(120deg, rgba(96,165,250,0.12), transparent 22%, transparent 72%, rgba(168,85,247,0.12)),
+    repeating-linear-gradient(
+      125deg,
+      rgba(148,163,184,0.03),
+      rgba(148,163,184,0.03) 1px,
+      transparent 1px,
+      transparent 28px
+    );
+  pointer-events: none;
+}
+
+.theme-reference-card {
+  background: linear-gradient(180deg, rgba(19, 27, 42, 0.7), rgba(9, 14, 24, 0.92));
+  border: 1px solid rgba(148, 163, 184, 0.18);
+  box-shadow: 0 20px 60px rgba(2, 6, 23, 0.38);
+}
+
+.theme-reference-pill {
+  background: linear-gradient(135deg, rgba(96,165,250,0.18), rgba(168,85,247,0.18));
+  border: 1px solid rgba(147, 197, 253, 0.24);
+  color: #dbeafe;
+}
+
+.icon-pill {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 1rem;
+  background: linear-gradient(135deg, rgba(124,140,255,0.16), rgba(181,138,247,0.18));
+  color: #4f46e5;
+  border: 1px solid rgba(124,140,255,0.22);
+  box-shadow: inset 0 1px 0 rgba(255,255,255,0.8);
+}
+
+.dark .icon-pill {
+  background: linear-gradient(135deg, rgba(96,165,250,0.18), rgba(168,85,247,0.18));
+  color: #bfdbfe;
+  border-color: rgba(96,165,250,0.2);
+}
+
+@media (max-width: 640px) {
+  .auth-panel,
+  .auth-nav,
+  .feature-card,
+  .metric-card,
+  .bookmark-card {
+    border-radius: 1.5rem;
+  }
+}
